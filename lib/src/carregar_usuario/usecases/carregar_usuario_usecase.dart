@@ -3,11 +3,11 @@ import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.
 import '../../utilitarios/erros_auth_google.dart';
 import 'entities/resultado_usuario.dart';
 
-class CarregarEmpresaUsecase
+class CarregarUsuarioUsecase
     extends UseCase<Stream<ResultadoUsuario>, NoParams> {
   final Repositorio<Stream<ResultadoUsuario>, NoParams> repositorio;
 
-  CarregarEmpresaUsecase({required this.repositorio});
+  CarregarUsuarioUsecase({required this.repositorio});
 
   @override
   Future<RetornoSucessoOuErro<Stream<ResultadoUsuario>>> call(
