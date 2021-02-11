@@ -9,3 +9,13 @@ class ErrorCarregarUsuario implements AppErro {
     return "ErrorCarregarUsuario - $mensagem";
   }
 }
+
+class ErrorRecuperarSenhaEmail implements AppErro {
+  final String mensagem;
+  ErrorRecuperarSenhaEmail({required this.mensagem});
+
+  @override
+  String toString() {
+    return "ErrorRecuperarSenhaEmail - $mensagem";
+  }
+}
