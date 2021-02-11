@@ -1,7 +1,7 @@
 import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
 
+import '../../../auth_google_package.dart';
 import '../../utilitarios/erros_auth_google.dart';
-import '../usecases/entities/resultado_usuario.dart';
 
 class CarregarUsuarioRepositorio
     extends Repositorio<Stream<ResultadoUsuario>, NoParams> {

@@ -1,7 +1,8 @@
-import 'package:auth_google_package/src/carregar_usuario/repositories/carregar_usuario_repository.dart';
-import 'package:auth_google_package/src/carregar_usuario/usecases/carregar_usuario_usecase.dart';
-import 'package:auth_google_package/src/carregar_usuario/usecases/entities/resultado_usuario.dart';
 import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
+
+import '../../carregar_usuario/repositories/carregar_usuario_repository.dart';
+import '../../carregar_usuario/usecases/carregar_usuario_usecase.dart';
+import '../../carregar_usuario/usecases/entities/resultado_usuario.dart';
 
 class CarregarUsuarioPresenter {
   final Datasource<Stream<ResultadoUsuario>, NoParams> datasource;
