@@ -6,15 +6,13 @@ import '../usecases/recuperar_senha_email_usecase.dart';
 
 class RecuperarSenhaEmailPresenter {
   final Datasource<bool, ParametrosRecuperarSenhaEmail> datasource;
-  final ParametrosRecuperarSenhaEmail parametros;
   final bool mostrarTempoExecucao;
 
   RecuperarSenhaEmailPresenter(
-      {required this.datasource,
-      required this.parametros,
-      required this.mostrarTempoExecucao});
+      {required this.datasource, required this.mostrarTempoExecucao});
 
-  Future<RetornoSucessoOuErro<bool>> recuperarSenhaEmail() async {
+  Future<RetornoSucessoOuErro<bool>> recuperarSenhaEmail(
+      {required ParametrosRecuperarSenhaEmail parametros}) async {
     TempoExecucao tempo = TempoExecucao();
     if (mostrarTempoExecucao) {
       tempo.iniciar();

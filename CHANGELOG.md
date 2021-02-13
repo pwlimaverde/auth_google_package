@@ -1,3 +1,7 @@
+## 1.1.0
+
+* TODO: Ajuste na passagme dos parâmetros do datasourse.
+
 ## 1.0.0
 
 * TODO: Versão estável com as features carragar_usuario, reuperar_senha_email, signin, e signout.
