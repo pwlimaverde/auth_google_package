@@ -1,6 +1,6 @@
 name: auth_google_package
 description: Package para autenticação de usuario usando as apis do Google.
-version: 0.1.0
+version: 0.2.0
 homepage: https://github.com/pwlimaverde/auth_google_package
 
 environment:
