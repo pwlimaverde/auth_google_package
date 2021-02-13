@@ -1,10 +1,14 @@
+## 1.1.2
+
+* TODO: Ajuste na passagem dos parâmetros do datasourse signin.
+
 ## 1.1.1
 
 * TODO: Ajuste no carregar_usuario_presenter.
 
 ## 1.1.0
 
-* TODO: Ajuste na passagem dos parâmetros do datasourse.
+* TODO: Ajuste na passagem dos parâmetros do datasourse recuperar_senha_email.
 
 ## 1.0.0
 
