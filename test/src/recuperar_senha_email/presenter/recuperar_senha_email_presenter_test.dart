@@ -17,10 +17,10 @@ void main() {
   test('Deve retornar um sucesso com true', () async {
     when(datasource).calls(#call).thenAnswer((_) => Future.value(true));
     final result = await RecuperarSenhaEmailPresenter(
-            datasource: datasource,
-            mostrarTempoExecucao: true,
-            parametros: ParametrosRecuperarSenhaEmail(email: "any"))
-        .recuperarSenhaEmail();
+      datasource: datasource,
+      mostrarTempoExecucao: true,
+    ).recuperarSenhaEmail(
+        parametros: ParametrosRecuperarSenhaEmail(email: "any"));
     print("teste result - ${await result.fold(
       sucesso: (value) => value.resultado,
       erro: (value) => value.erro,
@@ -41,8 +41,8 @@ void main() {
     final result = await RecuperarSenhaEmailPresenter(
       datasource: datasource,
       mostrarTempoExecucao: true,
-      parametros: ParametrosRecuperarSenhaEmail(email: "any"),
-    ).recuperarSenhaEmail();
+    ).recuperarSenhaEmail(
+        parametros: ParametrosRecuperarSenhaEmail(email: "any"));
     print("teste result - ${await result.fold(
       sucesso: (value) => value.resultado,
       erro: (value) => value.erro,
@@ -57,8 +57,8 @@ void main() {
     final result = await RecuperarSenhaEmailPresenter(
       datasource: datasource,
       mostrarTempoExecucao: true,
-      parametros: ParametrosRecuperarSenhaEmail(email: "any"),
-    ).recuperarSenhaEmail();
+    ).recuperarSenhaEmail(
+        parametros: ParametrosRecuperarSenhaEmail(email: "any"));
     print("teste result - ${await result.fold(
       sucesso: (value) => value.resultado,
       erro: (value) => value.erro,
