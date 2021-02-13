@@ -15,15 +15,24 @@ class RecuperarSenhaEmailUsecase
       final resultado = await retornoRepositorio(
         repositorio: repositorio,
         erro: ErrorRecuperarSenhaEmail(
-            mensagem: "Erro ao recuperar a senha pelo e-mail Cod.01-1"),
+            mensagem: "Erro ao recuperar a senha pelo e-mail Cod.01-2"),
         parametros: parametros,
       );
+      if (resultado is SucessoRetorno<bool>) {
+        if (!resultado.resultado) {
+          return ErroRetorno(
+            erro: ErrorRecuperarSenhaEmail(
+              mensagem: "Erro ao recuperar a senha pelo e-mail Cod.01-1",
+            ),
+          );
+        }
+      }
       return resultado;
     } catch (e) {
       return ErroRetorno(
         erro: ErrorCarregarUsuario(
           mensagem:
-              "${e.toString()} - Erro ao recuperar a senha pelo e-mail Cod.01-2",
+              "${e.toString()} - Erro ao recuperar a senha pelo e-mail Cod.01-3",
         ),
       );
     }

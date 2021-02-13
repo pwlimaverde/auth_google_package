@@ -19,7 +19,7 @@ void main() {
         RecuperarSenhaEmailUsecase(repositorio: repositorio);
   });
 
-  test('Deve retornar um sucesso com Stream<ResultadoUsuario>', () async {
+  test('Deve retornar um sucesso com Stream<bool>', () async {
     tempo.iniciar();
     when(repositorio)
         .calls(#call)
@@ -39,7 +39,7 @@ void main() {
           sucesso: (value) => value.resultado,
           erro: (value) => value.erro,
         ),
-        isA<bool>());
+        true);
   });
 
   test(
@@ -47,10 +47,28 @@ void main() {
       () async {
     tempo.iniciar();
     when(repositorio).calls(#call).thenAnswer(
+        (_) => Future.value(SucessoRetorno<bool>(resultado: false)));
+    final result = await recuperarSenhaEmailUsecase(
+        parametros: ParametrosRecuperarSenhaEmail(email: "any"));
+    print("teste result - ${await result.fold(
+      sucesso: (value) => value.resultado,
+      erro: (value) => value.erro,
+    )}");
+    tempo.terminar();
+    print(
+        "Tempo de Execução do CarregarEmpresa: ${tempo.calcularExecucao()}ms");
+    expect(result, isA<ErroRetorno<bool>>());
+  });
+
+  test(
+      'Deve retornar um ErrorCarregarEmpresa com Erro ao carregar os dados da empresa Cod.01-2',
+      () async {
+    tempo.iniciar();
+    when(repositorio).calls(#call).thenAnswer(
           (_) => Future.value(
             ErroRetorno<bool>(
               erro: ErrorRecuperarSenhaEmail(
-                mensagem: "Erro ao recuperar a senha pelo e-mail Cod.01-1",
+                mensagem: "Erro ao recuperar a senha pelo e-mail Cod.01-2",
               ),
             ),
           ),
@@ -68,7 +86,7 @@ void main() {
   });
 
   test(
-      'Deve retornar um ErrorCarregarEmpresa com Erro ao carregar os dados da empresa Cod.01-1',
+      'Deve retornar um ErrorCarregarEmpresa com Erro ao carregar os dados da empresa Cod.01-2',
       () async {
     tempo.iniciar();
     when(repositorio).calls(#call).thenThrow(Exception());
