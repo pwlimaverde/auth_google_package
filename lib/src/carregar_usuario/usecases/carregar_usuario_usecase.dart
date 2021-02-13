@@ -17,7 +17,7 @@ class CarregarUsuarioUsecase
         repositorio: repositorio,
         erro: ErroCarregarUsuario(
             mensagem: "Erro ao carregar os dados do Usuario Cod.01-1"),
-        parametros: NoParams(),
+        parametros: parametros,
       );
       return resultado;
     } catch (e) {

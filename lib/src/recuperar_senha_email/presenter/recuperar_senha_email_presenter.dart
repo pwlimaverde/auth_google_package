@@ -14,7 +14,7 @@ class RecuperarSenhaEmailPresenter {
       required this.parametros,
       required this.mostrarTempoExecucao});
 
-  Future<RetornoSucessoOuErro<bool>> carregarUsuario() async {
+  Future<RetornoSucessoOuErro<bool>> recuperarSenhaEmail() async {
     TempoExecucao tempo = TempoExecucao();
     if (mostrarTempoExecucao) {
       tempo.iniciar();

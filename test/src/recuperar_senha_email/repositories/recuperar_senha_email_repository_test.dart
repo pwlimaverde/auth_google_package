@@ -43,6 +43,22 @@ void main() {
         true);
   });
 
+  test('Deve retornar Erro ao recuperar a senha pelo e-mail Cod.01-1',
+      () async {
+    tempo.iniciar();
+    when(datasource).calls(#call).thenAnswer((_) => Future.value(false));
+    final result = await recuperarSenhaEmailUsecase(
+        parametros: ParametrosRecuperarSenhaEmail(email: "any"));
+    print("teste result - ${await result.fold(
+      sucesso: (value) => value.resultado,
+      erro: (value) => value.erro,
+    )}");
+    tempo.terminar();
+    print(
+        "Tempo de Execução do CarregarEmpresa: ${tempo.calcularExecucao()}ms");
+    expect(result, isA<ErroRetorno<bool>>());
+  });
+
   test(
       'Deve retornar ErroRecuperarSenhaEmail com Erro ao recuperar a senha pelo e-mail Cod.02-1',
       () async {

@@ -1,26 +1,24 @@
-import 'package:auth_google_package/src/recuperar_senha_email/presenter/recuperar_senha_email_presenter.dart';
-import 'package:auth_google_package/src/utilitarios/Parametros_recuperar_senha_email.dart';
+import 'package:auth_google_package/src/signout/presenter/signout_presenter.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
 
-class FairebaseRecuperarSenhaEmailDatasourceMock extends Mock
-    implements Datasource<bool, ParametrosRecuperarSenhaEmail> {}
+class FairebaseSignOutDatasourceMock extends Mock
+    implements Datasource<bool, NoParams> {}
 
 void main() {
-  late Datasource<bool, ParametrosRecuperarSenhaEmail> datasource;
+  late Datasource<bool, NoParams> datasource;
 
   setUp(() {
-    datasource = FairebaseRecuperarSenhaEmailDatasourceMock();
+    datasource = FairebaseSignOutDatasourceMock();
   });
 
   test('Deve retornar um sucesso com true', () async {
     when(datasource).calls(#call).thenAnswer((_) => Future.value(true));
-    final result = await RecuperarSenhaEmailPresenter(
-            datasource: datasource,
-            mostrarTempoExecucao: true,
-            parametros: ParametrosRecuperarSenhaEmail(email: "any"))
-        .recuperarSenhaEmail();
+    final result = await SignOutPresenter(
+      datasource: datasource,
+      mostrarTempoExecucao: true,
+    ).signOut();
     print("teste result - ${await result.fold(
       sucesso: (value) => value.resultado,
       erro: (value) => value.erro,
@@ -35,14 +33,13 @@ void main() {
   });
 
   test(
-      'Deve retornar um ErrorCarregarEmpresa com Erro ao carregar os dados da empresa Cod.01-1',
+      'Deve retornar um ErrorCarregarEmpresa com Erro ao fazer o signout Cod.01-1',
       () async {
     when(datasource).calls(#call).thenAnswer((_) => Future.value(false));
-    final result = await RecuperarSenhaEmailPresenter(
+    final result = await SignOutPresenter(
       datasource: datasource,
       mostrarTempoExecucao: true,
-      parametros: ParametrosRecuperarSenhaEmail(email: "any"),
-    ).recuperarSenhaEmail();
+    ).signOut();
     print("teste result - ${await result.fold(
       sucesso: (value) => value.resultado,
       erro: (value) => value.erro,
@@ -51,14 +48,13 @@ void main() {
   });
 
   test(
-      'Deve retornar ErroRecuperarSenhaEmail com Erro ao recuperar a senha pelo e-mail Cod.02-1',
+      'Deve retornar ErrorCarregarEmpresa com Erro ao fazer o signout Cod.02-1',
       () async {
     when(datasource).calls(#call).thenThrow(Exception());
-    final result = await RecuperarSenhaEmailPresenter(
+    final result = await SignOutPresenter(
       datasource: datasource,
       mostrarTempoExecucao: true,
-      parametros: ParametrosRecuperarSenhaEmail(email: "any"),
-    ).recuperarSenhaEmail();
+    ).signOut();
     print("teste result - ${await result.fold(
       sucesso: (value) => value.resultado,
       erro: (value) => value.erro,
