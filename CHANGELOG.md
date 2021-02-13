@@ -1,3 +1,7 @@
+## 1.0.0
+
+* TODO: Versão estável com as features carragar_usuario, reuperar_senha_email, signin, e signout.
+
 ## 0.2.0
 
 * TODO: Implantado carregar_usuario, recuperar_senha_email e signout
