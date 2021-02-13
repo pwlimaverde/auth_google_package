@@ -20,12 +20,22 @@ class ErroRecuperarSenhaEmail implements AppErro {
   }
 }
 
-class ErroSignout implements AppErro {
+class ErroSignOut implements AppErro {
   final String mensagem;
-  ErroSignout({required this.mensagem});
+  ErroSignOut({required this.mensagem});
 
   @override
   String toString() {
-    return "ErroSignout - $mensagem";
+    return "ErroSignOut - $mensagem";
+  }
+}
+
+class ErroSignIn implements AppErro {
+  final String mensagem;
+  ErroSignIn({required this.mensagem});
+
+  @override
+  String toString() {
+    return "ErroSignIn - $mensagem";
   }
 }

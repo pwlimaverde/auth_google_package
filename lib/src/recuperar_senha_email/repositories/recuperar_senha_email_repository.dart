@@ -1,6 +1,6 @@
 import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
 
-import '../../utilitarios/Parametros_recuperar_senha_email.dart';
+import '../../utilitarios/Parametros.dart';
 import '../../utilitarios/erros_auth_google.dart';
 
 class RecuperarSenhaEmailRepositorio
