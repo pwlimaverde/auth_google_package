@@ -45,7 +45,7 @@ void main() {
   });
 
   test(
-      'Deve ErrorCarregarUsuario com Erro ao carregar os dados do Usuario Cod.02-1',
+      'Deve ErroCarregarUsuario com Erro ao carregar os dados do Usuario Cod.02-1',
       () async {
     when(datasource).calls(#call).thenThrow(Exception());
     final result = await CarregarUsuarioPresenter(

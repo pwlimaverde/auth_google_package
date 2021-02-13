@@ -14,7 +14,7 @@ class CarregarUsuarioRepositorio
       {required NoParams parametros}) async {
     final resultado = await retornoDatasource(
       datasource: datasource,
-      erro: ErrorCarregarUsuario(
+      erro: ErroCarregarUsuario(
         mensagem: "Erro ao carregar os dados do Usuario Cod.02-1",
       ),
       parametros: NoParams(),

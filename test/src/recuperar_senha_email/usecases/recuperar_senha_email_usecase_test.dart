@@ -68,7 +68,7 @@ void main() {
     when(repositorio).calls(#call).thenAnswer(
           (_) => Future.value(
             ErroRetorno<bool>(
-              erro: ErrorRecuperarSenhaEmail(
+              erro: ErroRecuperarSenhaEmail(
                 mensagem: "Erro ao recuperar a senha pelo e-mail Cod.01-2",
               ),
             ),

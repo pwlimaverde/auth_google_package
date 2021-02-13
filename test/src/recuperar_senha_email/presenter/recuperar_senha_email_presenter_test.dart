@@ -51,7 +51,7 @@ void main() {
   });
 
   test(
-      'Deve retornar ErrorRecuperarSenhaEmail com Erro ao recuperar a senha pelo e-mail Cod.02-1',
+      'Deve retornar ErroRecuperarSenhaEmail com Erro ao recuperar a senha pelo e-mail Cod.02-1',
       () async {
     when(datasource).calls(#call).thenThrow(Exception());
     final result = await RecuperarSenhaEmailPresenter(

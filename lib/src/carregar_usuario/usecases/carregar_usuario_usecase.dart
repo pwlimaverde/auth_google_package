@@ -15,14 +15,14 @@ class CarregarUsuarioUsecase
     try {
       final resultado = await retornoRepositorio(
         repositorio: repositorio,
-        erro: ErrorCarregarUsuario(
+        erro: ErroCarregarUsuario(
             mensagem: "Erro ao carregar os dados do Usuario Cod.01-1"),
         parametros: NoParams(),
       );
       return resultado;
     } catch (e) {
       return ErroRetorno(
-        erro: ErrorCarregarUsuario(
+        erro: ErroCarregarUsuario(
           mensagem:
               "${e.toString()} - Erro ao carregar os dados do Usuario Cod.01-2",
         ),

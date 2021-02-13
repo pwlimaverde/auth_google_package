@@ -69,7 +69,7 @@ void main() {
     when(repositorio).calls(#call).thenAnswer(
           (_) => Future.value(
             ErroRetorno<Stream<ResultadoUsuario>>(
-              erro: ErrorCarregarUsuario(
+              erro: ErroCarregarUsuario(
                 mensagem: "Erro ao carregar os dados do usuario Cod.01-1",
               ),
             ),

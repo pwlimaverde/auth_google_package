@@ -1,21 +1,31 @@
 import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
 
-class ErrorCarregarUsuario implements AppErro {
+class ErroCarregarUsuario implements AppErro {
   final String mensagem;
-  ErrorCarregarUsuario({required this.mensagem});
+  ErroCarregarUsuario({required this.mensagem});
 
   @override
   String toString() {
-    return "ErrorCarregarUsuario - $mensagem";
+    return "ErroCarregarUsuario - $mensagem";
   }
 }
 
-class ErrorRecuperarSenhaEmail implements AppErro {
+class ErroRecuperarSenhaEmail implements AppErro {
   final String mensagem;
-  ErrorRecuperarSenhaEmail({required this.mensagem});
+  ErroRecuperarSenhaEmail({required this.mensagem});
 
   @override
   String toString() {
-    return "ErrorRecuperarSenhaEmail - $mensagem";
+    return "ErroRecuperarSenhaEmail - $mensagem";
+  }
+}
+
+class ErroSignout implements AppErro {
+  final String mensagem;
+  ErroSignout({required this.mensagem});
+
+  @override
+  String toString() {
+    return "ErroRecuperarSenhaEmail - $mensagem";
   }
 }
