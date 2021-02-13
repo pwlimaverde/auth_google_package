@@ -1,26 +1,29 @@
 import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
 
+import '../../utilitarios/Parametros.dart';
 import '../../utilitarios/erros_auth_google.dart';
 
-class SignOutUsecase extends UseCase<bool, NoParams> {
-  final Repositorio<bool, NoParams> repositorio;
+class SignInUsecase extends UseCase<bool, ParametrosSignIn> {
+  final Repositorio<bool, ParametrosSignIn> repositorio;
 
-  SignOutUsecase({required this.repositorio});
+  SignInUsecase({required this.repositorio});
 
   @override
   Future<RetornoSucessoOuErro<bool>> call(
-      {required NoParams parametros}) async {
+      {required ParametrosSignIn parametros}) async {
     try {
       final resultado = await retornoRepositorio(
         repositorio: repositorio,
-        erro: ErroSignOut(mensagem: "Erro ao fazer o signout Cod.01-2"),
+        erro: ErroSignIn(
+          mensagem: "Erro ao fazer o SignIn Cod.01-2",
+        ),
         parametros: parametros,
       );
       if (resultado is SucessoRetorno<bool>) {
         if (!resultado.resultado) {
           return ErroRetorno(
-            erro: ErroSignOut(
-              mensagem: "Erro ao fazer o signout Cod.01-1",
+            erro: ErroSignIn(
+              mensagem: "Erro ao fazer o SignIn Cod.01-1",
             ),
           );
         }
@@ -28,8 +31,8 @@ class SignOutUsecase extends UseCase<bool, NoParams> {
       return resultado;
     } catch (e) {
       return ErroRetorno(
-        erro: ErroSignOut(
-          mensagem: "${e.toString()} - Erro ao fazer o signout Cod.01-3",
+        erro: ErroSignIn(
+          mensagem: "${e.toString()} - Erro ao fazer o SignIn Cod.01-3",
         ),
       );
     }

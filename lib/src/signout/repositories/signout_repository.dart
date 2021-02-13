@@ -12,7 +12,7 @@ class SignOutRepositorio extends Repositorio<bool, NoParams> {
       {required NoParams parametros}) async {
     final resultado = await retornoDatasource(
       datasource: datasource,
-      erro: ErroSignout(
+      erro: ErroSignOut(
         mensagem: "Erro ao fazer o signout Cod.02-1",
       ),
       parametros: parametros,
