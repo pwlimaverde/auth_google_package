@@ -26,6 +26,6 @@ class ErroSignout implements AppErro {
 
   @override
   String toString() {
-    return "ErroRecuperarSenhaEmail - $mensagem";
+    return "ErroSignout - $mensagem";
   }
 }
