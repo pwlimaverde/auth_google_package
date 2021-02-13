@@ -17,10 +17,9 @@ void main() {
   test('Deve retornar um sucesso com true', () async {
     when(datasource).calls(#call).thenAnswer((_) => Future.value(true));
     final result = await SignInPresenter(
-            datasource: datasource,
-            mostrarTempoExecucao: true,
-            parametros: ParametrosSignIn(email: "any"))
-        .signIn();
+      datasource: datasource,
+      mostrarTempoExecucao: true,
+    ).signIn(parametros: ParametrosSignIn(email: "any"));
     print("teste result - ${await result.fold(
       sucesso: (value) => value.resultado,
       erro: (value) => value.erro,
@@ -40,8 +39,7 @@ void main() {
     final result = await SignInPresenter(
       datasource: datasource,
       mostrarTempoExecucao: true,
-      parametros: ParametrosSignIn(email: "any"),
-    ).signIn();
+    ).signIn(parametros: ParametrosSignIn(email: "any"));
     print("teste result - ${await result.fold(
       sucesso: (value) => value.resultado,
       erro: (value) => value.erro,
@@ -55,8 +53,7 @@ void main() {
     final result = await SignInPresenter(
       datasource: datasource,
       mostrarTempoExecucao: true,
-      parametros: ParametrosSignIn(email: "any"),
-    ).signIn();
+    ).signIn(parametros: ParametrosSignIn(email: "any"));
     print("teste result - ${await result.fold(
       sucesso: (value) => value.resultado,
       erro: (value) => value.erro,
