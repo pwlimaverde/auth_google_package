@@ -39,7 +39,7 @@ void main() {
         true);
   });
 
-  test('Deve retornar ErroSignout com Erro ao fazer o signout Cod.02-1',
+  test('Deve retornar ErroSignOut com Erro ao fazer o signout Cod.02-1',
       () async {
     tempo.iniciar();
     when(datasource).calls(#call).thenAnswer((_) => Future.value(false));
@@ -53,7 +53,7 @@ void main() {
     expect(result, isA<ErroRetorno<bool>>());
   });
 
-  test('Deve retornar ErroSignout com Erro ao fazer o signout Cod.02-1',
+  test('Deve retornar ErroSignOut com Erro ao fazer o signout Cod.02-1',
       () async {
     tempo.iniciar();
     when(datasource).calls(#call).thenThrow(Exception());

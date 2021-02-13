@@ -1,5 +1,5 @@
 import 'package:auth_google_package/src/recuperar_senha_email/presenter/recuperar_senha_email_presenter.dart';
-import 'package:auth_google_package/src/utilitarios/Parametros_recuperar_senha_email.dart';
+import 'package:auth_google_package/src/utilitarios/Parametros.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
