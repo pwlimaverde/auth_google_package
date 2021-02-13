@@ -4,30 +4,31 @@ import '../../utilitarios/Parametros.dart';
 import '../repositories/signin_repository.dart';
 import '../usecases/signin_usecase.dart';
 
-class RecuperarSenhaEmailPresenter {
-  final Datasource<bool, ParametrosRecuperarSenhaEmail> datasource;
-  final ParametrosRecuperarSenhaEmail parametros;
+class SignInPresenter {
+  final Datasource<bool, ParametrosSignIn> datasource;
+  final ParametrosSignIn parametros;
   final bool mostrarTempoExecucao;
 
-  RecuperarSenhaEmailPresenter(
-      {required this.datasource,
-      required this.parametros,
-      required this.mostrarTempoExecucao});
+  SignInPresenter({
+    required this.datasource,
+    required this.parametros,
+    required this.mostrarTempoExecucao,
+  });
 
-  Future<RetornoSucessoOuErro<bool>> recuperarSenhaEmail() async {
+  Future<RetornoSucessoOuErro<bool>> signIn() async {
     TempoExecucao tempo = TempoExecucao();
     if (mostrarTempoExecucao) {
       tempo.iniciar();
     }
-    final resultado = await RecuperarSenhaEmailUsecase(
-      repositorio: RecuperarSenhaEmailRepositorio(
+    final resultado = await SignInUsecase(
+      repositorio: SignInRepositorio(
         datasource: datasource,
       ),
     )(parametros: parametros);
     if (mostrarTempoExecucao) {
       tempo.terminar();
       print(
-          "Tempo de Execução do RecuperarSenhaEmailPresenter: ${tempo.calcularExecucao()}ms");
+          "Tempo de Execução do SignInPresenter: ${tempo.calcularExecucao()}ms");
     }
     return resultado;
   }
