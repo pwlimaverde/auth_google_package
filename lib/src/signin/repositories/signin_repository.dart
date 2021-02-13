@@ -3,19 +3,18 @@ import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.
 import '../../utilitarios/Parametros.dart';
 import '../../utilitarios/erros_auth_google.dart';
 
-class RecuperarSenhaEmailRepositorio
-    extends Repositorio<bool, ParametrosRecuperarSenhaEmail> {
-  final Datasource<bool, ParametrosRecuperarSenhaEmail> datasource;
+class SignInRepositorio extends Repositorio<bool, ParametrosSignIn> {
+  final Datasource<bool, ParametrosSignIn> datasource;
 
-  RecuperarSenhaEmailRepositorio({required this.datasource});
+  SignInRepositorio({required this.datasource});
 
   @override
   Future<RetornoSucessoOuErro<bool>> call(
-      {required ParametrosRecuperarSenhaEmail parametros}) async {
+      {required ParametrosSignIn parametros}) async {
     final resultado = await retornoDatasource(
       datasource: datasource,
-      erro: ErroRecuperarSenhaEmail(
-        mensagem: "Erro ao recuperar a senha pelo e-mail Cod.02-1",
+      erro: ErroSignIn(
+        mensagem: "Erro ao fazer o SignIn Cod.02-1",
       ),
       parametros: parametros,
     );
