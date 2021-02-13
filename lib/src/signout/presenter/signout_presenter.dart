@@ -1,8 +1,8 @@
 import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
 
 import '../../utilitarios/Parametros_recuperar_senha_email.dart';
-import '../repositories/recuperar_senha_email_repository.dart';
-import '../usecases/recuperar_senha_email_usecase.dart';
+import '../repositories/signout_repository.dart';
+import '../usecases/signout_usecase.dart';
 
 class RecuperarSenhaEmailPresenter {
   final Datasource<bool, ParametrosRecuperarSenhaEmail> datasource;
