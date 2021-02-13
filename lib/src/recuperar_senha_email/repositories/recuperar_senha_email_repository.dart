@@ -2,12 +2,13 @@ import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.
 
 import '../../../auth_google_package.dart';
 import '../../utilitarios/erros_auth_google.dart';
+import '../usecases/recuperar_senha_email_usecase.dart';
 
-class CarregarUsuarioRepositorio
-    extends Repositorio<Stream<ResultadoUsuario>, NoParams> {
-  final Datasource<Stream<ResultadoUsuario>, NoParams> datasource;
+class RecuperarSenhaEmailRepositorio
+    extends Repositorio<bool, ParametrosRecuperarSenhaEmail> {
+  final Datasource<bool, ParametrosRecuperarSenhaEmail> datasource;
 
-  CarregarUsuarioRepositorio({required this.datasource});
+  RecuperarSenhaEmailRepositorio({required this.datasource});
 
   @override
   Future<RetornoSucessoOuErro<Stream<ResultadoUsuario>>> call(
