@@ -6,16 +6,15 @@ import '../usecases/signin_usecase.dart';
 
 class SignInPresenter {
   final Datasource<bool, ParametrosSignIn> datasource;
-  final ParametrosSignIn parametros;
   final bool mostrarTempoExecucao;
 
   SignInPresenter({
     required this.datasource,
-    required this.parametros,
     required this.mostrarTempoExecucao,
   });
 
-  Future<RetornoSucessoOuErro<bool>> signIn() async {
+  Future<RetornoSucessoOuErro<bool>> signIn(
+      {required ParametrosSignIn parametros}) async {
     TempoExecucao tempo = TempoExecucao();
     if (mostrarTempoExecucao) {
       tempo.iniciar();
