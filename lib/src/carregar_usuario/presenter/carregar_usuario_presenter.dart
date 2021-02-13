@@ -6,21 +6,23 @@ import '../usecases/entities/resultado_usuario.dart';
 
 class CarregarUsuarioPresenter {
   final Datasource<Stream<ResultadoUsuario>, NoParams> datasource;
-  final bool? mostrarTempoExecucao;
+  final bool mostrarTempoExecucao;
 
   CarregarUsuarioPresenter(
-      {required this.datasource, this.mostrarTempoExecucao});
+      {required this.datasource, required this.mostrarTempoExecucao});
 
   Future<RetornoSucessoOuErro<Stream<ResultadoUsuario>>>
       carregarUsuario() async {
     TempoExecucao tempo = TempoExecucao();
-    tempo.iniciar();
+    if (mostrarTempoExecucao) {
+      tempo.iniciar();
+    }
     final resultado = await CarregarUsuarioUsecase(
       repositorio: CarregarUsuarioRepositorio(
         datasource: datasource,
       ),
     )(parametros: NoParams());
-    if (mostrarTempoExecucao ?? false) {
+    if (mostrarTempoExecucao) {
       tempo.terminar();
       print(
           "Tempo de Execução do CarregarUsuarioPresenter: ${tempo.calcularExecucao()}ms");

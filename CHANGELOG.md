@@ -1,6 +1,10 @@
+## 1.1.1
+
+* TODO: Ajuste no carregar_usuario_presenter.
+
 ## 1.1.0
 
-* TODO: Ajuste na passagme dos parâmetros do datasourse.
+* TODO: Ajuste na passagem dos parâmetros do datasourse.
 
 ## 1.0.0
 
