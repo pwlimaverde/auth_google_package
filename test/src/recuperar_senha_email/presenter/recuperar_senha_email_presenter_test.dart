@@ -1,5 +1,4 @@
-import 'package:auth_google_package/src/recuperar_senha_email/repositories/recuperar_senha_email_repository.dart';
-import 'package:auth_google_package/src/recuperar_senha_email/usecases/recuperar_senha_email_usecase.dart';
+import 'package:auth_google_package/src/recuperar_senha_email/presenter/recuperar_senha_email_presenter.dart';
 import 'package:auth_google_package/src/utilitarios/Parametros_recuperar_senha_email.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -10,30 +9,22 @@ class FairebaseRecuperarSenhaEmailDatasourceMock extends Mock
 
 void main() {
   late Datasource<bool, ParametrosRecuperarSenhaEmail> datasource;
-  late Repositorio<bool, ParametrosRecuperarSenhaEmail> repositorio;
-  late UseCase<bool, ParametrosRecuperarSenhaEmail> recuperarSenhaEmailUsecase;
-  late TempoExecucao tempo;
 
   setUp(() {
-    tempo = TempoExecucao();
     datasource = FairebaseRecuperarSenhaEmailDatasourceMock();
-    repositorio = RecuperarSenhaEmailRepositorio(datasource: datasource);
-    recuperarSenhaEmailUsecase =
-        RecuperarSenhaEmailUsecase(repositorio: repositorio);
   });
 
   test('Deve retornar um sucesso com true', () async {
-    tempo.iniciar();
     when(datasource).calls(#call).thenAnswer((_) => Future.value(true));
-    final result = await recuperarSenhaEmailUsecase(
-        parametros: ParametrosRecuperarSenhaEmail(email: "any"));
+    final result = await RecuperarSenhaEmailPresenter(
+            datasource: datasource,
+            mostrarTempoExecucao: true,
+            parametros: ParametrosRecuperarSenhaEmail(email: "any"))
+        .carregarUsuario();
     print("teste result - ${await result.fold(
       sucesso: (value) => value.resultado,
       erro: (value) => value.erro,
     )}");
-    tempo.terminar();
-    print(
-        "Tempo de Execução do CarregarEmpresa: ${tempo.calcularExecucao()}ms");
     expect(result, isA<SucessoRetorno<bool>>());
     expect(
         result.fold(
@@ -44,19 +35,34 @@ void main() {
   });
 
   test(
-      'Deve retornar ErrorRecuperarSenhaEmail com Erro ao recuperar a senha pelo e-mail Cod.02-1',
+      'Deve retornar um ErrorCarregarEmpresa com Erro ao carregar os dados da empresa Cod.01-1',
       () async {
-    tempo.iniciar();
-    when(datasource).calls(#call).thenThrow(Exception());
-    final result = await recuperarSenhaEmailUsecase(
-        parametros: ParametrosRecuperarSenhaEmail(email: "any"));
+    when(datasource).calls(#call).thenAnswer((_) => Future.value(false));
+    final result = await RecuperarSenhaEmailPresenter(
+      datasource: datasource,
+      mostrarTempoExecucao: true,
+      parametros: ParametrosRecuperarSenhaEmail(email: "any"),
+    ).carregarUsuario();
     print("teste result - ${await result.fold(
       sucesso: (value) => value.resultado,
       erro: (value) => value.erro,
     )}");
-    tempo.terminar();
-    print(
-        "Tempo de Execução do CarregarEmpresa: ${tempo.calcularExecucao()}ms");
+    expect(result, isA<ErroRetorno<bool>>());
+  });
+
+  test(
+      'Deve retornar ErrorRecuperarSenhaEmail com Erro ao recuperar a senha pelo e-mail Cod.02-1',
+      () async {
+    when(datasource).calls(#call).thenThrow(Exception());
+    final result = await RecuperarSenhaEmailPresenter(
+      datasource: datasource,
+      mostrarTempoExecucao: true,
+      parametros: ParametrosRecuperarSenhaEmail(email: "any"),
+    ).carregarUsuario();
+    print("teste result - ${await result.fold(
+      sucesso: (value) => value.resultado,
+      erro: (value) => value.erro,
+    )}");
     expect(result, isA<ErroRetorno<bool>>());
   });
 }
