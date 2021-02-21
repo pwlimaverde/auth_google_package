@@ -9,9 +9,11 @@ class ParametrosRecuperarSenhaEmail {
 class ParametrosSignIn {
   final String? email;
   final String? pass;
+  final ResultadoUsuario? user;
 
   ParametrosSignIn({
     this.email,
     this.pass,
+    this.user,
   });
 }
