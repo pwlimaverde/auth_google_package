@@ -1,3 +1,7 @@
+## 1.3.0
+
+* TODO: Ajustes para flutter 2.0.0.
+
 ## 1.1.2
 
 * TODO: Ajuste na passagem dos parâmetros do datasourse signin.
