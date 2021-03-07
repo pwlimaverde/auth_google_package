@@ -35,22 +35,6 @@ void main() {
   });
 
   test(
-      'Deve retornar um ErrorCarregarEmpresa com Erro ao carregar os dados da empresa Cod.01-1',
-      () async {
-    when(datasource).calls(#call).thenAnswer((_) => Future.value(false));
-    final result = await RecuperarSenhaEmailPresenter(
-      datasource: datasource,
-      mostrarTempoExecucao: true,
-    ).recuperarSenhaEmail(
-        parametros: ParametrosRecuperarSenhaEmail(email: "any"));
-    print("teste result - ${await result.fold(
-      sucesso: (value) => value.resultado,
-      erro: (value) => value.erro,
-    )}");
-    expect(result, isA<ErroRetorno<bool>>());
-  });
-
-  test(
       'Deve retornar ErroRecuperarSenhaEmail com Erro ao recuperar a senha pelo e-mail Cod.02-1',
       () async {
     when(datasource).calls(#call).thenThrow(Exception());

@@ -1,5 +1,3 @@
-import 'package:auth_google_package/src/signout/repositories/signout_repository.dart';
-import 'package:auth_google_package/src/signout/usecases/signout_usecase.dart';
 import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
 
 class SignOutPresenter {
@@ -10,20 +8,15 @@ class SignOutPresenter {
       {required this.datasource, required this.mostrarTempoExecucao});
 
   Future<RetornoSucessoOuErro<bool>> signOut() async {
-    TempoExecucao tempo = TempoExecucao();
-    if (mostrarTempoExecucao) {
-      tempo.iniciar();
-    }
-    final resultado = await SignOutUsecase(
-      repositorio: SignOutRepositorio(
-        datasource: datasource,
+    final resultado = await RetornoResultadoPresenter<bool>(
+      mostrarTempoExecucao: mostrarTempoExecucao,
+      nomeFeature: "Fazer SignOut",
+      datasource: datasource,
+    ).retornoResultado(
+      parametros: NoParams(
+        mensagemErro: "Erro ao fazer o signout",
       ),
-    )(parametros: NoParams());
-    if (mostrarTempoExecucao) {
-      tempo.terminar();
-      print(
-          "Tempo de Execução do SignOutPresenter: ${tempo.calcularExecucao()}ms");
-    }
+    );
     return resultado;
   }
 }
