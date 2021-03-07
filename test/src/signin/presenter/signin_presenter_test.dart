@@ -33,20 +33,6 @@ void main() {
         true);
   });
 
-  test('Deve retornar um ErroSignIn com Erro ao fazer o SignIn Cod.01-1',
-      () async {
-    when(datasource).calls(#call).thenAnswer((_) => Future.value(false));
-    final result = await SignInPresenter(
-      datasource: datasource,
-      mostrarTempoExecucao: true,
-    ).signIn(parametros: ParametrosSignIn(email: "any"));
-    print("teste result - ${await result.fold(
-      sucesso: (value) => value.resultado,
-      erro: (value) => value.erro,
-    )}");
-    expect(result, isA<ErroRetorno<bool>>());
-  });
-
   test('Deve retornar ErroSignIn com Erro ao fazer o SignIn Cod.02-1',
       () async {
     when(datasource).calls(#call).thenThrow(Exception());

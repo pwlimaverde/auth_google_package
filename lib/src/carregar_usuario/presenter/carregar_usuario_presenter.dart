@@ -1,32 +1,28 @@
 import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
 
-import '../repositories/carregar_usuario_repository.dart';
-import '../usecases/carregar_usuario_usecase.dart';
-import '../usecases/entities/resultado_usuario.dart';
+import '../../entities/resultado_usuario.dart';
 
 class CarregarUsuarioPresenter {
-  final Datasource<Stream<ResultadoUsuario>, NoParams> datasource;
+  final Datasource<Stream<ResultadoUsuario>, ParametrosRetornoResultado>
+      datasource;
   final bool mostrarTempoExecucao;
 
-  CarregarUsuarioPresenter(
-      {required this.datasource, required this.mostrarTempoExecucao});
+  CarregarUsuarioPresenter({
+    required this.datasource,
+    required this.mostrarTempoExecucao,
+  });
 
   Future<RetornoSucessoOuErro<Stream<ResultadoUsuario>>>
       carregarUsuario() async {
-    TempoExecucao tempo = TempoExecucao();
-    if (mostrarTempoExecucao) {
-      tempo.iniciar();
-    }
-    final resultado = await CarregarUsuarioUsecase(
-      repositorio: CarregarUsuarioRepositorio(
-        datasource: datasource,
+    final resultado = await RetornoResultadoPresenter<Stream<ResultadoUsuario>>(
+      mostrarTempoExecucao: mostrarTempoExecucao,
+      nomeFeature: "Carregar Seções",
+      datasource: datasource,
+    ).retornoResultado(
+      parametros: NoParams(
+        mensagemErro: "Erro ao carregar os dados do Usuario",
       ),
-    )(parametros: NoParams());
-    if (mostrarTempoExecucao) {
-      tempo.terminar();
-      print(
-          "Tempo de Execução do CarregarUsuarioPresenter: ${tempo.calcularExecucao()}ms");
-    }
+    );
     return resultado;
   }
 }

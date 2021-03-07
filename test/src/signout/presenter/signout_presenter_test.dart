@@ -33,21 +33,6 @@ void main() {
   });
 
   test(
-      'Deve retornar um ErrorCarregarEmpresa com Erro ao fazer o signout Cod.01-1',
-      () async {
-    when(datasource).calls(#call).thenAnswer((_) => Future.value(false));
-    final result = await SignOutPresenter(
-      datasource: datasource,
-      mostrarTempoExecucao: true,
-    ).signOut();
-    print("teste result - ${await result.fold(
-      sucesso: (value) => value.resultado,
-      erro: (value) => value.erro,
-    )}");
-    expect(result, isA<ErroRetorno<bool>>());
-  });
-
-  test(
       'Deve retornar ErrorCarregarEmpresa com Erro ao fazer o signout Cod.02-1',
       () async {
     when(datasource).calls(#call).thenThrow(Exception());
