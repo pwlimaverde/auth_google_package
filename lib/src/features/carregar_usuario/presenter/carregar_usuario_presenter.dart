@@ -1,6 +1,6 @@
 import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
 
-import '../../entities/resultado_usuario.dart';
+import '../../../../auth_google_package.dart';
 
 class CarregarUsuarioPresenter {
   final Datasource<Stream<ResultadoUsuario>, ParametrosRetornoResultado>
