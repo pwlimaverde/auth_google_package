@@ -1,4 +1,4 @@
-import 'package:auth_google_package/src/signout/presenter/signout_presenter.dart';
+import 'package:auth_google_package/src/features/signout/presenter/signout_presenter.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';

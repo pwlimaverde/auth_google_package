@@ -1,4 +1,4 @@
-import 'package:auth_google_package/src/recuperar_senha_email/presenter/recuperar_senha_email_presenter.dart';
+import 'package:auth_google_package/src/features/recuperar_senha_email/presenter/recuperar_senha_email_presenter.dart';
 import 'package:auth_google_package/src/utilitarios/Parametros.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';

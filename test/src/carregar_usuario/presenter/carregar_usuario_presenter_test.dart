@@ -1,5 +1,5 @@
 import 'package:auth_google_package/auth_google_package.dart';
-import 'package:auth_google_package/src/carregar_usuario/presenter/carregar_usuario_presenter.dart';
+import 'package:auth_google_package/src/features/carregar_usuario/presenter/carregar_usuario_presenter.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
