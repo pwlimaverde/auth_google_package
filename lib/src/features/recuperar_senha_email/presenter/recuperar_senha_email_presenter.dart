@@ -1,21 +1,21 @@
 import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
 
-import '../../utilitarios/Parametros.dart';
+import '../../../utilitarios/Parametros.dart';
 
-class SignInPresenter {
-  final Datasource<bool, ParametrosSignIn> datasource;
+class RecuperarSenhaEmailPresenter {
+  final Datasource<bool, ParametrosRecuperarSenhaEmail> datasource;
   final bool mostrarTempoExecucao;
 
-  SignInPresenter({
+  RecuperarSenhaEmailPresenter({
     required this.datasource,
     required this.mostrarTempoExecucao,
   });
 
-  Future<RetornoSucessoOuErro<bool>> signIn(
-      {required ParametrosSignIn parametros}) async {
+  Future<RetornoSucessoOuErro<bool>> recuperarSenhaEmail(
+      {required ParametrosRecuperarSenhaEmail parametros}) async {
     final resultado = await RetornoResultadoPresenter<bool>(
       mostrarTempoExecucao: mostrarTempoExecucao,
-      nomeFeature: "Fazer SignIn",
+      nomeFeature: "Recuperar senha pelo email",
       datasource: datasource,
     ).retornoResultado(
       parametros: parametros,
