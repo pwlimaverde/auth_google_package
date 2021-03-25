@@ -1,9 +1,9 @@
-import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
+import 'package:return_success_or_error/return_success_or_error.dart';
 
 import '../../../utilitarios/Parametros.dart';
 
 class SignInPresenter {
-  final Datasource<bool, ParametrosSignIn> datasource;
+  final Datasource<bool> datasource;
   final bool mostrarTempoExecucao;
 
   SignInPresenter({
@@ -11,14 +11,14 @@ class SignInPresenter {
     required this.mostrarTempoExecucao,
   });
 
-  Future<RetornoSucessoOuErro<bool>> signIn(
+  Future<ReturnSuccessOrError<bool>> signIn(
       {required ParametrosSignIn parametros}) async {
-    final resultado = await RetornoResultadoPresenter<bool>(
-      mostrarTempoExecucao: mostrarTempoExecucao,
-      nomeFeature: "Fazer SignIn",
+    final resultado = await ReturnResultPresenter<bool>(
+      showRuntimeMilliseconds: mostrarTempoExecucao,
+      nameFeature: "Fazer SignIn",
       datasource: datasource,
-    ).retornoResultado(
-      parametros: parametros,
+    )(
+      parameters: parametros,
     );
     return resultado;
   }

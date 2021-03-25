@@ -1,13 +1,12 @@
 import 'package:auth_google_package/src/features/signout/presenter/signout_presenter.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
+import 'package:return_success_or_error/return_success_or_error.dart';
 
-class FairebaseSignOutDatasourceMock extends Mock
-    implements Datasource<bool, NoParams> {}
+class FairebaseSignOutDatasourceMock extends Mock implements Datasource<bool> {}
 
 void main() {
-  late Datasource<bool, NoParams> datasource;
+  late Datasource<bool> datasource;
 
   setUp(() {
     datasource = FairebaseSignOutDatasourceMock();
@@ -20,14 +19,14 @@ void main() {
       mostrarTempoExecucao: true,
     ).signOut();
     print("teste result - ${await result.fold(
-      sucesso: (value) => value.resultado,
-      erro: (value) => value.erro,
+      success: (value) => value.result,
+      error: (value) => value.error,
     )}");
-    expect(result, isA<SucessoRetorno<bool>>());
+    expect(result, isA<SuccessReturn<bool>>());
     expect(
         result.fold(
-          sucesso: (value) => value.resultado,
-          erro: (value) => value.erro,
+          success: (value) => value.result,
+          error: (value) => value.error,
         ),
         true);
   });
@@ -41,9 +40,9 @@ void main() {
       mostrarTempoExecucao: true,
     ).signOut();
     print("teste result - ${await result.fold(
-      sucesso: (value) => value.resultado,
-      erro: (value) => value.erro,
+      success: (value) => value.result,
+      error: (value) => value.error,
     )}");
-    expect(result, isA<ErroRetorno<bool>>());
+    expect(result, isA<ErrorReturn<bool>>());
   });
 }

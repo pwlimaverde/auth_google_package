@@ -1,14 +1,15 @@
 import 'package:auth_google_package/src/features/recuperar_senha_email/presenter/recuperar_senha_email_presenter.dart';
 import 'package:auth_google_package/src/utilitarios/Parametros.dart';
+import 'package:auth_google_package/src/utilitarios/erros_auth_google.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
+import 'package:return_success_or_error/return_success_or_error.dart';
 
 class FairebaseRecuperarSenhaEmailDatasourceMock extends Mock
-    implements Datasource<bool, ParametrosRecuperarSenhaEmail> {}
+    implements Datasource<bool> {}
 
 void main() {
-  late Datasource<bool, ParametrosRecuperarSenhaEmail> datasource;
+  late Datasource<bool> datasource;
 
   setUp(() {
     datasource = FairebaseRecuperarSenhaEmailDatasourceMock();
@@ -20,16 +21,20 @@ void main() {
       datasource: datasource,
       mostrarTempoExecucao: true,
     ).recuperarSenhaEmail(
-        parametros: ParametrosRecuperarSenhaEmail(email: "any"));
+      parametros: ParametrosRecuperarSenhaEmail(
+        email: "any",
+        error: ErroRecuperarSenhaEmail(message: 'teste error'),
+      ),
+    );
     print("teste result - ${await result.fold(
-      sucesso: (value) => value.resultado,
-      erro: (value) => value.erro,
+      success: (value) => value.result,
+      error: (value) => value.error,
     )}");
-    expect(result, isA<SucessoRetorno<bool>>());
+    expect(result, isA<SuccessReturn<bool>>());
     expect(
         result.fold(
-          sucesso: (value) => value.resultado,
-          erro: (value) => value.erro,
+          success: (value) => value.result,
+          error: (value) => value.error,
         ),
         true);
   });
@@ -42,11 +47,15 @@ void main() {
       datasource: datasource,
       mostrarTempoExecucao: true,
     ).recuperarSenhaEmail(
-        parametros: ParametrosRecuperarSenhaEmail(email: "any"));
+      parametros: ParametrosRecuperarSenhaEmail(
+        email: "any",
+        error: ErroRecuperarSenhaEmail(message: 'teste error'),
+      ),
+    );
     print("teste result - ${await result.fold(
-      sucesso: (value) => value.resultado,
-      erro: (value) => value.erro,
+      success: (value) => value.result,
+      error: (value) => value.error,
     )}");
-    expect(result, isA<ErroRetorno<bool>>());
+    expect(result, isA<ErrorReturn<bool>>());
   });
 }

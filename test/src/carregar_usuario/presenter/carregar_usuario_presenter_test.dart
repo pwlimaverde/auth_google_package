@@ -2,14 +2,14 @@ import 'package:auth_google_package/auth_google_package.dart';
 import 'package:auth_google_package/src/features/carregar_usuario/presenter/carregar_usuario_presenter.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
+import 'package:return_success_or_error/return_success_or_error.dart';
 import 'package:rxdart/rxdart.dart';
 
 class FairebaseUsuarioDatasource extends Mock
-    implements Datasource<Stream<ResultadoUsuario>, NoParams> {}
+    implements Datasource<Stream<ResultadoUsuario>> {}
 
 void main() {
-  late Datasource<Stream<ResultadoUsuario>, NoParams> datasource;
+  late Datasource<Stream<ResultadoUsuario>> datasource;
 
   setUp(() {
     datasource = FairebaseUsuarioDatasource();
@@ -31,14 +31,14 @@ void main() {
             datasource: datasource, mostrarTempoExecucao: true)
         .carregarUsuario();
     print("teste result - ${await result.fold(
-          sucesso: (value) => value.resultado,
-          erro: (value) => value.erro,
+          success: (value) => value.result,
+          error: (value) => value.error,
         ).first}");
-    expect(result, isA<SucessoRetorno<Stream<ResultadoUsuario>>>());
+    expect(result, isA<SuccessReturn<Stream<ResultadoUsuario>>>());
     expect(
         result.fold(
-          sucesso: (value) => value.resultado,
-          erro: (value) => value.erro,
+          success: (value) => value.result,
+          error: (value) => value.error,
         ),
         isA<Stream<ResultadoUsuario>>());
     testeFire.close();
@@ -52,9 +52,9 @@ void main() {
             datasource: datasource, mostrarTempoExecucao: true)
         .carregarUsuario();
     print("teste result - ${await result.fold(
-      sucesso: (value) => value.resultado,
-      erro: (value) => value.erro,
+      success: (value) => value.result,
+      error: (value) => value.error,
     )}");
-    expect(result, isA<ErroRetorno<Stream<ResultadoUsuario>>>());
+    expect(result, isA<ErrorReturn<Stream<ResultadoUsuario>>>());
   });
 }
