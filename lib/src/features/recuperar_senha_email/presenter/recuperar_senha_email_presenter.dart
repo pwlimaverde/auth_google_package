@@ -1,9 +1,9 @@
-import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
+import 'package:return_success_or_error/return_success_or_error.dart';
 
 import '../../../utilitarios/Parametros.dart';
 
 class RecuperarSenhaEmailPresenter {
-  final Datasource<bool, ParametrosRecuperarSenhaEmail> datasource;
+  final Datasource<bool> datasource;
   final bool mostrarTempoExecucao;
 
   RecuperarSenhaEmailPresenter({
@@ -11,14 +11,14 @@ class RecuperarSenhaEmailPresenter {
     required this.mostrarTempoExecucao,
   });
 
-  Future<RetornoSucessoOuErro<bool>> recuperarSenhaEmail(
+  Future<ReturnSuccessOrError<bool>> recuperarSenhaEmail(
       {required ParametrosRecuperarSenhaEmail parametros}) async {
-    final resultado = await RetornoResultadoPresenter<bool>(
-      mostrarTempoExecucao: mostrarTempoExecucao,
-      nomeFeature: "Recuperar senha pelo email",
+    final resultado = await ReturnResultPresenter<bool>(
+      showRuntimeMilliseconds: mostrarTempoExecucao,
+      nameFeature: "Recuperar senha pelo email",
       datasource: datasource,
-    ).retornoResultado(
-      parametros: parametros,
+    )(
+      parameters: parametros,
     );
     return resultado;
   }

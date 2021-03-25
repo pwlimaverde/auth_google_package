@@ -1,14 +1,14 @@
 import 'package:auth_google_package/src/features/signin/presenter/signin_presenter.dart';
 import 'package:auth_google_package/src/utilitarios/Parametros.dart';
+import 'package:auth_google_package/src/utilitarios/erros_auth_google.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
+import 'package:return_success_or_error/return_success_or_error.dart';
 
-class FairebaseSignInDatasourceMock extends Mock
-    implements Datasource<bool, ParametrosSignIn> {}
+class FairebaseSignInDatasourceMock extends Mock implements Datasource<bool> {}
 
 void main() {
-  late Datasource<bool, ParametrosSignIn> datasource;
+  late Datasource<bool> datasource;
 
   setUp(() {
     datasource = FairebaseSignInDatasourceMock();
@@ -19,16 +19,21 @@ void main() {
     final result = await SignInPresenter(
       datasource: datasource,
       mostrarTempoExecucao: true,
-    ).signIn(parametros: ParametrosSignIn(email: "any"));
+    ).signIn(
+      parametros: ParametrosSignIn(
+        email: "any",
+        error: ErroSignIn(message: "teste error"),
+      ),
+    );
     print("teste result - ${await result.fold(
-      sucesso: (value) => value.resultado,
-      erro: (value) => value.erro,
+      success: (value) => value.result,
+      error: (value) => value.error,
     )}");
-    expect(result, isA<SucessoRetorno<bool>>());
+    expect(result, isA<SuccessReturn<bool>>());
     expect(
         result.fold(
-          sucesso: (value) => value.resultado,
-          erro: (value) => value.erro,
+          success: (value) => value.result,
+          error: (value) => value.error,
         ),
         true);
   });
@@ -39,11 +44,16 @@ void main() {
     final result = await SignInPresenter(
       datasource: datasource,
       mostrarTempoExecucao: true,
-    ).signIn(parametros: ParametrosSignIn(email: "any"));
+    ).signIn(
+      parametros: ParametrosSignIn(
+        email: "any",
+        error: ErroSignIn(message: "teste error"),
+      ),
+    );
     print("teste result - ${await result.fold(
-      sucesso: (value) => value.resultado,
-      erro: (value) => value.erro,
+      success: (value) => value.result,
+      error: (value) => value.error,
     )}");
-    expect(result, isA<ErroRetorno<bool>>());
+    expect(result, isA<ErrorReturn<bool>>());
   });
 }

@@ -1,27 +1,27 @@
-import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
+import 'package:return_success_or_error/return_success_or_error.dart';
 
 import '../../auth_google_package.dart';
 
-class ParametrosRecuperarSenhaEmail implements ParametrosRetornoResultado {
+class ParametrosRecuperarSenhaEmail implements ParametersReturnResult {
   final String email;
+  final AppError error;
 
-  ParametrosRecuperarSenhaEmail({required this.email});
-
-  @override
-  String get mensagemErro => "Erro ao recuperar a senha pelo e-mail";
+  ParametrosRecuperarSenhaEmail({
+    required this.email,
+    required this.error,
+  });
 }
 
-class ParametrosSignIn implements ParametrosRetornoResultado {
+class ParametrosSignIn implements ParametersReturnResult {
   final String? email;
   final String? pass;
   final ResultadoUsuario? user;
+  final AppError error;
 
   ParametrosSignIn({
     this.email,
     this.pass,
     this.user,
+    required this.error,
   });
-
-  @override
-  String get mensagemErro => "Erro ao fazer o SignIn";
 }

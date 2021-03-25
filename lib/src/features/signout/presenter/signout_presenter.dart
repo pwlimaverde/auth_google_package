@@ -1,20 +1,24 @@
-import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
+import 'package:return_success_or_error/return_success_or_error.dart';
+
+import '../../../utilitarios/erros_auth_google.dart';
 
 class SignOutPresenter {
-  final Datasource<bool, NoParams> datasource;
+  final Datasource<bool> datasource;
   final bool mostrarTempoExecucao;
 
   SignOutPresenter(
       {required this.datasource, required this.mostrarTempoExecucao});
 
-  Future<RetornoSucessoOuErro<bool>> signOut() async {
-    final resultado = await RetornoResultadoPresenter<bool>(
-      mostrarTempoExecucao: mostrarTempoExecucao,
-      nomeFeature: "Fazer SignOut",
+  Future<ReturnSuccessOrError<bool>> signOut() async {
+    final resultado = await ReturnResultPresenter<bool>(
+      showRuntimeMilliseconds: mostrarTempoExecucao,
+      nameFeature: "Fazer SignOut",
       datasource: datasource,
-    ).retornoResultado(
-      parametros: NoParams(
-        mensagemErro: "Erro ao fazer o signout",
+    )(
+      parameters: NoParams(
+        error: ErroSignOut(
+          message: "Erro ao fazer o SignOut",
+        ),
       ),
     );
     return resultado;

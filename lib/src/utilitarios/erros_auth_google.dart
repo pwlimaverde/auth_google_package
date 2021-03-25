@@ -1,41 +1,41 @@
-import 'package:retorno_sucesso_ou_erro_package/retorno_sucesso_ou_erro_package.dart';
+import 'package:return_success_or_error/return_success_or_error.dart';
 
-class ErroCarregarUsuario implements AppErro {
-  final String mensagem;
-  ErroCarregarUsuario({required this.mensagem});
+class ErroCarregarUsuario implements AppError {
+  String message;
+  ErroCarregarUsuario({required this.message});
 
   @override
   String toString() {
-    return "ErroCarregarUsuario - $mensagem";
+    return "ErroCarregarUsuario - $message";
   }
 }
 
-class ErroRecuperarSenhaEmail implements AppErro {
-  final String mensagem;
-  ErroRecuperarSenhaEmail({required this.mensagem});
+class ErroRecuperarSenhaEmail implements AppError {
+  String message;
+  ErroRecuperarSenhaEmail({required this.message});
 
   @override
   String toString() {
-    return "ErroRecuperarSenhaEmail - $mensagem";
+    return "ErroRecuperarSenhaEmail - $message";
   }
 }
 
-class ErroSignOut implements AppErro {
-  final String mensagem;
-  ErroSignOut({required this.mensagem});
+class ErroSignOut implements AppError {
+  String message;
+  ErroSignOut({required this.message});
 
   @override
   String toString() {
-    return "ErroSignOut - $mensagem";
+    return "ErroSignOut - $message";
   }
 }
 
-class ErroSignIn implements AppErro {
-  final String mensagem;
-  ErroSignIn({required this.mensagem});
+class ErroSignIn implements AppError {
+  String message;
+  ErroSignIn({required this.message});
 
   @override
   String toString() {
-    return "ErroSignIn - $mensagem";
+    return "ErroSignIn - $message";
   }
 }
