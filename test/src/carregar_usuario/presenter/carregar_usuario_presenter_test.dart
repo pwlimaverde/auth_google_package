@@ -22,7 +22,6 @@ void main() {
         id: "1",
         nome: "Paulo Weslley",
         email: "Paulo Weslley",
-        endereco: "Paulo Weslley",
         administrador: true,
       ),
     );
